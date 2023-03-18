@@ -1,6 +1,4 @@
 node_modules
-dist
-!*/dist/index.html
 .yarn
 !.yarn/releases
 !.yarn/plugins
