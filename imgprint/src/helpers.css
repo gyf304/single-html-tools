@@ -1,0 +1,12 @@
+@import "./variables.css";
+
+.outline-text {
+	color: transparent;
+	text-shadow:
+		0 0 1px var(--color-text),
+		-1px -1px 1px var(--color-text),
+		-1px 1px 1px var(--color-text),
+		1px 1px 1px var(--color-text),
+		1px -1px 1px var(--color-text);
+	position: relative;
+}

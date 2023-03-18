@@ -1,0 +1,24 @@
+.app {
+	margin: 16px;
+	display: flex;
+}
+
+.app .left {
+	flex: 1;
+}
+
+.app .right {
+	flex: 1;
+}
+
+.app form>div {
+	margin-bottom: 0.5em;
+}
+
+.app form label:not(:last-child) {
+	margin-right: 0.5em;
+}
+
+.app form button:not(:last-child) {
+	margin-right: 0.5em;
+}
