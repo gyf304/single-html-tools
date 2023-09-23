@@ -15,6 +15,8 @@ export const App = () => {
 	const [images, setImages] = React.useState<Image[]>([]);
 	const [dpi, setDpi] = React.useState<number>(300);
 	const [anchor, setAnchor] = React.useState<Anchor>("top-left");
+	const [contrast, setContrast] = React.useState<number>(1);
+	const [brightness, setBrightness] = React.useState<number>(1);
 
 	return <div className="app">
 		<div className="left">
@@ -32,6 +34,16 @@ export const App = () => {
 					<select value={anchor} onChange={(e) => setAnchor(e.target.value as Anchor)}>
 						{anchors.map((anchor) => <option key={anchor} value={anchor}>{anchor}</option>)}
 					</select>
+				</div>
+				<div>
+					<label>Brightness</label>
+					<input type="range" min="0.1" max="5.0" step="0.1" value={brightness} onChange={(e) => setBrightness(parseFloat(e.target.value))} />
+					<span>{brightness}</span>
+				</div>
+				<div>
+					<label>Contrast</label>
+					<input type="range" min="0.1" max="5.0" step="0.1" value={contrast} onChange={(e) => setContrast(parseFloat(e.target.value))} />
+					<span>{contrast}</span>
 				</div>
 				<div>
 					<input
@@ -82,9 +94,6 @@ export const App = () => {
 					}}>Preview / Print</button>
 				</div>
 			</form>
-		</div>
-
-		<div className="right">
 			<h2>File List</h2>
 			<ul>
 				{images.map(({name, url}) => <li key={name}>
@@ -100,16 +109,24 @@ export const App = () => {
 				</li>)}
 			</ul>
 		</div>
-		<PrintBox
-			ref={ref}
-			pages={images.map((image) => ({
-				src: image.url,
-				anchor,
-				width: `${image.width / dpi}in`,
-			}))}
-			style={{
-				display: "none",
-			}}
-		/>
+
+		<div className="right">
+			<PrintBox
+				ref={ref}
+				pages={images.map((image) => ({
+					src: image.url,
+					anchor,
+					width: `${image.width / dpi}in`,
+					filter: `brightness(${brightness}) contrast(${contrast})`,
+				}))}
+				style={{
+					// display: "none",
+					width: "100%",
+					height: "100%",
+					overflow: "scroll",
+				}}
+			/>
+		</div>
+
 	</ div>
 };

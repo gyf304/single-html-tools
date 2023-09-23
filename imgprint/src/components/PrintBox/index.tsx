@@ -45,6 +45,11 @@ const anchorStyles = {
 		left: "50%",
 		transform: "translate(-50%, -50%)",
 	},
+	"top-center": {
+		top: 0,
+		left: "50%",
+		transform: "translateX(-50%)",
+	},
 } as const;
 
 export type Anchor = keyof typeof anchorStyles;
@@ -55,6 +60,7 @@ export interface PageProps {
 	anchor?: keyof typeof anchorStyles;
 	width?: number | string;
 	height?: number | string;
+	filter?: string;
 }
 
 export interface PrintBoxProps {
@@ -79,6 +85,7 @@ export const Page = (props: PageProps) => {
 				...anchorStyle,
 				width: props.width,
 				height: props.height,
+				filter: props.filter,
 			}}
 		/>
 	</div>;
